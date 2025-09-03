@@ -58,7 +58,7 @@ Here are example JSON payloads you can send to the bot for each command.
 }
 ```
 **Result ✅**
-![Result Succeed](`screenshots/successful-validation.png`)
+![Result Succeed](screenshots/successful-validation.png)
 
 
 ### 2️⃣ `/review` Command
@@ -89,4 +89,4 @@ Here are example JSON payloads you can send to the bot for each command.
 }
 ```
 **Result ❌**
-![Result Failed](`screenshots/failed-validation.png`)
+![Result Failed](screenshots/failed-validation.png)
