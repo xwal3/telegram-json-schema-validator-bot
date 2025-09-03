@@ -3,6 +3,12 @@
 
 The purpose of this bot is to receive JSON schema of AI conversations with function calls and validate the function call with the schema,
 
+## 🤖 Access the Bot
+
+You can try the bot directly on Telegram:  
+
+👉 [**Click here to open the bot**](https://t.me/etskimabot)
+
 ## 🤖 Bot Commands
 This Telegram bot allows you to validate JSON data against schemas and review AI tool call conversations. Below are the available commands:
 
