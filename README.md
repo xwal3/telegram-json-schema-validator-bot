@@ -18,6 +18,7 @@ This Telegram bot allows you to validate JSON data against schemas and review AI
 | `/cancel`    | Cancels the current validation or review operation at any time.             |
 
 ---
+
 ## 📤 Examples
 
 Here are example JSON payloads you can send to the bot for each command.
@@ -57,4 +58,35 @@ Here are example JSON payloads you can send to the bot for each command.
 }
 ```
 **Result ✅**
+![Result Succeed](`screenshots/successful-validation.png`)
 
+
+### 2️⃣ `/review` Command
+**Send the Json payload containind both Schema and data together.**
+```json
+{
+  "schema": {
+    "type": "object",
+    "properties": {
+      "name": {"type": "string"},
+      "arguments": {
+        "type": "object",
+        "properties": {
+          "location": {"type": "string"},
+          "unit": {"type": "string"}
+        },
+        "required": ["location", "unit"]
+      }
+    },
+    "required": ["name", "arguments"]
+  },
+  "data": {
+    "name": "get_current_weather",
+    "arguments": {
+      "location": "Boston, MA"
+    }
+  }
+}
+```
+**Result ❌**
+![Result Failed](`screenshots/failed-validation.png`)
