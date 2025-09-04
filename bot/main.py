@@ -181,5 +181,5 @@ async def run_bot():
     
     application.add_handler(conv_handler)
     print("Bot is now running and polling for updates...")
-    await application.run_polling(allowed_updates=Update.ALL_TYPES)
+    await application.run_polling(allowed_updates=["message"])
 
