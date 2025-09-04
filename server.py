@@ -2,10 +2,17 @@ from fastapi import FastAPI
 import os
 
 import asyncio
+from contextlib import asynccontextmanager
 from bot.main import run_bot
 
 
-app = FastAPI()
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+
+    asyncio.create_task(run_bot())
+    yield
+
+app = FastAPI(lifespan=lifespan)
 
 @app.get("/")
 async def root():
