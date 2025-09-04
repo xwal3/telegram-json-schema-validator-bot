@@ -5,18 +5,22 @@ import asyncio
 from contextlib import asynccontextmanager
 from bot.main import run_bot
 
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # Start bot in a background thread using the same asyncio loop
+    loop = asyncio.get_event_loop()
+    threading.Thread(target=lambda: loop.run_until_complete(run_bot()), daemon=True).start()
+    yield
+    print("FastAPI shutting down...")
 
-app = FastAPI()
+app = FastAPI(lifespan=lifespan)
 
 @app.get("/")
 async def root():
     return {"message": "Skima bot start running"}
 
 
-def start_bot():
-    asyncio.run(run_bot())
 
-threading.Thread(target=start_bot, daemon=True).start()
 
 if __name__ == "__main__":
     import uvicorn
