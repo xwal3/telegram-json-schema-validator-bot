@@ -2,7 +2,7 @@
 import json
 
 from telegram import Update, ForceReply, BotCommand
-from telegram.ext import (Application, ContextTypes, CommandHandler,MessageHandler, filters, ConversationHandler)
+from telegram.ext import (Application, ApplicationBuilder, ContextTypes, CommandHandler,MessageHandler, filters, ConversationHandler)
 
 from bot.LLMConversationValidator import LLMConversationValidator
 
@@ -162,8 +162,8 @@ async def cancel(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
 
 
 
-def main() -> None:
-    """Start the bot here"""
+async def run_bot():
+
 
     application = Application.builder().token(TELEGRAM_BOT_TOKEN).post_init(post_init).build()
 
@@ -181,9 +181,5 @@ def main() -> None:
     
     application.add_handler(conv_handler)
     print("Bot is now running and polling for updates...")
-    application.run_polling(allowed_updates=Update.ALL_TYPES)
-
-if __name__ == "__main__":
-    main()
-
+    await application.run_polling(allowed_updates=Update.ALL_TYPES)
 
