@@ -18,9 +18,7 @@ app = FastAPI(lifespan=lifespan)
 async def root():
     return {"message": "Skima bot start running"}
 
-@app.on_event("startup")
-async def start_bot():
-    asyncio.create_task(run_bot())
+
 
 
 if __name__ == "__main__":
