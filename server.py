@@ -6,20 +6,17 @@ from contextlib import asynccontextmanager
 from bot.main import run_bot
 
 
-@asynccontextmanager
-async def lifespan(app: FastAPI):
-
-    threading.Thread(target=lambda: asyncio.run(run_bot()), daemon=True).start()
-    yield
-
-app = FastAPI(lifespan=lifespan)
+app = FastAPI()
 
 @app.get("/")
 async def root():
     return {"message": "Skima bot start running"}
 
 
+def start_bot():
+    asyncio.run(run_bot())
 
+threading.Thread(target=start_bot, daemon=True).start()
 
 if __name__ == "__main__":
     import uvicorn
