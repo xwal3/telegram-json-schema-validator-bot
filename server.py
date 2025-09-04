@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 import os
-
+import threading
 import asyncio
 from contextlib import asynccontextmanager
 from bot.main import run_bot
@@ -9,7 +9,7 @@ from bot.main import run_bot
 @asynccontextmanager
 async def lifespan(app: FastAPI):
 
-    asyncio.create_task(run_bot())
+    threading.Thread(target=lambda: asyncio.run(run_bot()), daemon=True).start()
     yield
 
 app = FastAPI(lifespan=lifespan)
