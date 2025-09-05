@@ -6,7 +6,7 @@ from telegram.ext import (Application, ApplicationBuilder, ContextTypes, Command
 
 from bot.LLMConversationValidator import LLMConversationValidator
 
-from config.settings import TELEGRAM_BOT_TOKEN
+#from config.settings import TELEGRAM_BOT_TOKEN
 
 
 
@@ -162,10 +162,10 @@ async def cancel(update: Update, context: ContextTypes.DEFAULT_TYPE) -> int:
 
 
 
-async def run_bot():
+async def run_bot(application: Application) :
 
 
-    application = Application.builder().token(TELEGRAM_BOT_TOKEN).post_init(post_init).build()
+    #application = Application.builder().token(TELEGRAM_BOT_TOKEN).post_init(post_init).build()
 
 
     application.add_handler(CommandHandler("start", start))
@@ -180,6 +180,6 @@ async def run_bot():
     )
     
     application.add_handler(conv_handler)
-    print("Bot is now running and polling for updates...")
-    await application.run_polling(allowed_updates=["message"])
+   # print("Bot is now running and polling for updates...")
+    #await application.run_polling(allowed_updates=["message"])
 
